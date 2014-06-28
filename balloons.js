@@ -24,7 +24,7 @@ var animateBalloon = function (balloonHeight, speed, deg) {
 };
 
 $(function () {
-    if (pusherApiKey !== "") {
+    if (config.pusherApiKey !== "") {
         var pusher = new Pusher(pusherApiKey);
         var channel = pusher.subscribe('balloon_channel');
         channel.bind('balloon', function(data) {
@@ -47,6 +47,7 @@ $(function () {
 
     $("#newBalloon").submit(function (e) {
         e.preventDefault();
+        e.stopImmediatePropagation();
         animateBalloon($("#size").val(), $("#speed").val(), $("#color").val());
     });
 });

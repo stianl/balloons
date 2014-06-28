@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Boons</title>
+    <title>Balloons!</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="balloons.js"></script>
@@ -12,6 +12,11 @@
             background: #7BD6FF no-repeat;
             overflow: hidden;
             font-family: sans-serif;
+        }
+
+        input, button {
+            width: 100%;
+            height: 50px;
         }
 
         #balloon {
@@ -31,11 +36,15 @@
             <span class="rounds"></span>
         </div>
 
-        <div class="cloud_base" style="left: 200px; top: 300px;">
+        <div class="cloud_base" style="left: 200px; top: 500px;">
             <span class="rounds"></span>
         </div>
 
-        <div class="cloud_base" style="left: 750px;">
+        <div class="cloud_base" style="left: 750px; top: 50px;">
+            <span class="rounds"></span>
+        </div>
+
+        <div class="cloud_base" style="left: 1050px; top: 600px">
             <span class="rounds"></span>
         </div>
     </div>
@@ -46,14 +55,15 @@
 
     <div id="manualControl">
         <form id="newBalloon">
-        Color: <input id="color" value="1" type="range" min="1" max="360" placeholder="color">
+        Color: <input id="color" value="1" type="range" min="1" max="360">
             <br />
-        Size: <input id="size" value="1" type="range" min="1" max="10" placeholder="size">
+        Size: <input id="size" value="1" type="range" min="1" max="10">
             <br />
-        Speed: <input id="speed" value="1" type="range" min="1" max="10" placeholder="size">
+        Speed: <input id="speed" value="1" type="range" min="1" max="10">
             <br />
         <input type="submit" value="Release balloon!" id="sendBalloon">
         </form>
+        <br />
         <button id="sendMany">Release many balloons!</button>
     </div>
 </div>
