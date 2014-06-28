@@ -1,8 +1,6 @@
-/**
- * Created by stian on 28.06.14.
- */
 var config = {
-    manual: false
+    manual: false,
+    pusherApiKey: ""
 };
 
 
@@ -13,6 +11,7 @@ var animateBalloon = function (balloonHeight, speed, deg) {
     $clone.css({
         display: "block",
         "-webkit-filter": "hue-rotate(" + deg + "deg)",
+        "-mozilla-filter": "hue-rotate(" + deg + "deg)",
         height: height,
         top: $(window).height() + height
     });
@@ -25,11 +24,18 @@ var animateBalloon = function (balloonHeight, speed, deg) {
 };
 
 $(function () {
+
+    var pusher = new Pusher(pusherApiKey);
+    var channel = pusher.subscribe('balloon_channel');
+    channel.bind('balloon', function(data) {
+        animateBalloon(data.size, data.speed, data.color);
+    });
+
     if (config.manual) {
         $("#manualControl").show();
     }
 
-    $("#sendMany").click(function (e) {
+    $("#sendMany").click(function () {
         for (var i = 0; i < 10; i++) {
             var size = Math.floor((Math.random() * 10) + 1);
             var speed = Math.floor((Math.random() * 10) + 1);
