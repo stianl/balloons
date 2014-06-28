@@ -1,5 +1,5 @@
 var config = {
-    manual: false,
+    manual: true,
     pusherApiKey: ""
 };
 
@@ -24,12 +24,13 @@ var animateBalloon = function (balloonHeight, speed, deg) {
 };
 
 $(function () {
-
-    var pusher = new Pusher(pusherApiKey);
-    var channel = pusher.subscribe('balloon_channel');
-    channel.bind('balloon', function(data) {
-        animateBalloon(data.size, data.speed, data.color);
-    });
+    if (pusherApiKey !== "") {
+        var pusher = new Pusher(pusherApiKey);
+        var channel = pusher.subscribe('balloon_channel');
+        channel.bind('balloon', function(data) {
+            animateBalloon(data.size, data.speed, data.color);
+        });
+    }
 
     if (config.manual) {
         $("#manualControl").show();
